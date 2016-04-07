@@ -4,7 +4,7 @@
 [![Software License][ico-license]](LICENSE.md)
 [![Total Downloads][ico-downloads]][link-downloads]
 
-The default Eloquent model is great for most cases, but if you have a database table that has additional constraints you may run into race conditions where updateOrCreate will fail.
+The default Eloquent model is great for most cases, but if you have a database table that has additional constraints you may run into race conditions where the standard update() call will fail.
 Imagine, for example, the following table structure:
 
 ```
