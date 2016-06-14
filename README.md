@@ -62,7 +62,7 @@ Apply the trait to your models to activate the ability to use replace and insert
 ``` php
 class model extends Model {
 	...	
-	use \jdavidbakr\ReplacableModel\ReplaceableModel
+	use \jdavidbakr\ReplaceableModel\ReplaceableModel
 	...
 }
 ```
