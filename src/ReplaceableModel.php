@@ -49,7 +49,7 @@ trait ReplaceableModel
             });
 
         $bindings = [];
-        $query = $command . " into ".$model->getTable()." (".$keys->implode(",").") values ";
+        $query = $command . " into " . \DB::getTablePrefix() . $model->getTable()." (".$keys->implode(",").") values ";
         $inserts = [];
         foreach($attributes as $data) {
             $qs = [];
