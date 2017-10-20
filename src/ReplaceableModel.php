@@ -3,6 +3,7 @@
 namespace jdavidbakr\ReplaceableModel;
 
 use Illuminate\Support\ServiceProvider;
+use Carbon\Carbon;
 
 trait ReplaceableModel
 {
@@ -24,7 +25,16 @@ trait ReplaceableModel
      */
     public static function insertIgnore(array $attributes = [])
     {
-        return static::executeQuery('insert ignore', $attributes);
+        $model = new static();
+        $driver = $model->GetConnection()->GetDriverName();
+        switch($driver) {
+            case 'sqlite':
+                return static::executeQuery('insert or ignore', $attributes);
+                break;
+            default:
+                return static::executeQuery('insert ignore', $attributes);
+                break;
+        }
     }
 
     protected static function executeQuery($command, array $attributes)
@@ -36,6 +46,21 @@ trait ReplaceableModel
 
         if ($model->fireModelEvent('saving') === false) {
             return false;
+        }
+
+        // Check for timestamps
+        // Note that because we are actually deleting the record in the case of replace, we don't have reference to the original created_at timestamp;
+        // If you need to retain that, you shouldn't be using this package and should be using the standard eloquent system.
+        if($model->timestamps) {
+            foreach($attributes as $key=>$set) {
+                if(empty($set[static::CREATED_AT])) {
+                    $set[static::CREATED_AT] = Carbon::now();
+                }
+                if(empty($set[static::UPDATED_AT])) {
+                    $set[static::UPDATED_AT] = Carbon::now();
+                }
+                $attributes[$key] = $set;
+            }
         }
 
         $attributes = collect($attributes);
