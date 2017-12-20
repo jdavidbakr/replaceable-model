@@ -49,6 +49,12 @@ trait ReplaceableModel
             return false;
         }
 
+        $attributes = collect($attributes);
+        $first = $attributes->first();
+        if(!is_array($first)) {
+            $attributes = collect([$attributes->toArray()]);
+        }
+
         // Check for timestamps
         // Note that because we are actually deleting the record in the case of replace, we don't have reference to the original created_at timestamp;
         // If you need to retain that, you shouldn't be using this package and should be using the standard eloquent system.
@@ -64,11 +70,6 @@ trait ReplaceableModel
             }
         }
 
-        $attributes = collect($attributes);
-        $first = $attributes->first();
-        if(!is_array($first)) {
-            $attributes = collect([$attributes->toArray()]);
-        }
         $keys = collect($attributes->first())->keys()
             ->transform(function($key) {
                 return "`".$key."`";
