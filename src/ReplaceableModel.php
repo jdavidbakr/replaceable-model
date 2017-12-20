@@ -4,6 +4,7 @@ namespace jdavidbakr\ReplaceableModel;
 
 use Illuminate\Support\ServiceProvider;
 use Carbon\Carbon;
+use DB;
 
 trait ReplaceableModel
 {
@@ -74,7 +75,7 @@ trait ReplaceableModel
             });
 
         $bindings = [];
-        $query = $command . " into " . \DB::getTablePrefix() . $model->getTable()." (".$keys->implode(",").") values ";
+        $query = $command . " into " . DB::connection($model->getConnectionName())->getTablePrefix() . $model->getTable()." (".$keys->implode(",").") values ";
         $inserts = [];
         foreach($attributes as $data) {
             $qs = [];
@@ -86,7 +87,7 @@ trait ReplaceableModel
         }
         $query .= implode(",",$inserts);
 
-        \DB::connection($model->getConnectionName())->insert($query, $bindings);
+        DB::connection($model->getConnectionName())->insert($query, $bindings);
 
         $model->fireModelEvent('saved', false);
     }
