@@ -63,7 +63,7 @@ trait ReplaceableModel
                 if(empty($set[static::CREATED_AT])) {
                     $set[static::CREATED_AT] = Carbon::now();
                 }
-                if(empty($set[static::UPDATED_AT])) {
+                if(! is_null($model::UPDATED_AT) && empty($set[static::UPDATED_AT])) {
                     $set[static::UPDATED_AT] = Carbon::now();
                 }
                 $attributes[$key] = $set;
