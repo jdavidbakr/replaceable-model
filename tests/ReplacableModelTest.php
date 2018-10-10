@@ -1,11 +1,11 @@
 <?php
 
-class ReplacableModelTest extends Orchestra\Testbench\TestCase {
-
+class ReplacableModelTest extends Orchestra\Testbench\TestCase
+{
     public function setUp()
     {
         parent::setUp();
-        $this->artisan('migrate',['--path'=>'../../../../test-migrations']);
+        $this->artisan('migrate', ['--path'=>'../../../../test-migrations']);
     }
 
     /**
@@ -20,7 +20,7 @@ class ReplacableModelTest extends Orchestra\Testbench\TestCase {
             ],
         ];
         $model = TestModel::replace($inserts);
-        $this->assertDatabaseHas('test_models',[
+        $this->assertDatabaseHas('test_models', [
             'id'=>1,
             'string'=>'string-1'
         ]);
@@ -52,11 +52,11 @@ class ReplacableModelTest extends Orchestra\Testbench\TestCase {
             ]
         ];
         $model = TestModel::replace($inserts);
-        $this->assertDatabaseHas('test_models',[
+        $this->assertDatabaseHas('test_models', [
             'id'=>1,
             'string'=>'string-2'
         ]);
-        $this->assertDatabaseHas('test_models',[
+        $this->assertDatabaseHas('test_models', [
             'id'=>2,
             'string'=>'string-3'
         ]);
@@ -85,7 +85,7 @@ class ReplacableModelTest extends Orchestra\Testbench\TestCase {
             ],
         ];
         $model = TestModel::insertIgnore($inserts);
-        $this->assertDatabaseHas('test_models',[
+        $this->assertDatabaseHas('test_models', [
             'id'=>1,
             'string'=>'string-1'
         ]);
@@ -119,12 +119,12 @@ class ReplacableModelTest extends Orchestra\Testbench\TestCase {
         ];
         $model = TestModel::insertIgnore($inserts);
         // First one should not change
-        $this->assertDatabaseHas('test_models',[
+        $this->assertDatabaseHas('test_models', [
             'id'=>1,
             'string'=>'string-1'
         ]);
         // Second one should be inserted
-        $this->assertDatabaseHas('test_models',[
+        $this->assertDatabaseHas('test_models', [
             'id'=>2,
             'string'=>'string-3'
         ]);
@@ -142,9 +142,8 @@ class ReplacableModelTest extends Orchestra\Testbench\TestCase {
     }
 }
 
-class TestModel extends Illuminate\Database\Eloquent\Model {
-    
+class TestModel extends Illuminate\Database\Eloquent\Model
+{
     use jdavidbakr\ReplaceableModel\ReplaceableModel;
     protected $guarded = [];
-
 }
