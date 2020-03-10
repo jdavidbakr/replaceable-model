@@ -2,7 +2,7 @@
 
 class ReplacableModelTest extends Orchestra\Testbench\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->artisan('migrate', ['--path'=>'../../../../test-migrations']);
