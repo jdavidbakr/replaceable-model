@@ -1,0 +1,46 @@
+language: php
+
+cache:
+    directories:
+        - $HOME/.cache/pip
+        - $HOME/.composer/cache/files
+
+php:
+    - 7.1
+    - 7.2
+    - 7.3
+
+env:
+    - LARAVEL_VERSION=5.1.*
+    - LARAVEL_VERSION=5.2.*
+    - LARAVEL_VERSION=5.3.*
+    - LARAVEL_VERSION=5.4.*
+    - LARAVEL_VERSION=5.5.*
+    - LARAVEL_VERSION=5.6.*
+    - LARAVEL_VERSION=5.7.*
+    - LARAVEL_VERSION=5.8.*
+    - LARAVEL_VERSION=6.0.*
+    - LARAVEL_VERSION=7.0.*
+
+matrix:
+    exclude:
+        - php: 7.1
+          env: LARAVEL_VERSION=6.0.*
+        - php: 7.1
+          env: LARAVEL_VERSION=7.0.*
+
+before_install:
+    - echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+    - cp ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ~/xdebug.ini
+    - phpenv config-rm xdebug.ini
+    - composer global require hirak/prestissimo --update-no-dev
+    - composer require "laravel/framework:${LARAVEL_VERSION}" --no-update --prefer-dist
+
+install: travis_retry composer install --no-interaction --prefer-dist
+
+before_script: phpenv config-add ~/xdebug.ini
+
+script: vendor/bin/phpunit tests
+
+notifications:
+    email: false
