@@ -3,6 +3,7 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Total Downloads][ico-downloads]][link-downloads]
+[![Travis CI][ico-travis]][link-travis]
 
 The default Eloquent model is great for most cases, but if you have a database table that has additional constraints you may run into race conditions where the standard update() call will fail.
 Imagine, for example, the following table structure:
@@ -92,17 +93,17 @@ If you discover any security related issues, please email me@jdavidbaker.com ins
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/jdavidbakr/ReplaceableModel.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/jdavidbakr/replaceable-model.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/jdavidbakr/ReplaceableModel/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/jdavidbakr/ReplaceableModel.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/jdavidbakr/ReplaceableModel.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/jdavidbakr/ReplaceableModel.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/jdavidbakr/replaceable-model/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/jdavidbakr/replaceable-model.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/jdavidbakr/replaceable-model.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/jdavidbakr/replaceable-model.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/jdavidbakr/ReplaceableModel
-[link-travis]: https://travis-ci.org/jdavidbakr/ReplaceableModel
-[link-scrutinizer]: https://scrutinizer-ci.com/g/jdavidbakr/ReplaceableModel/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/jdavidbakr/ReplaceableModel
-[link-downloads]: https://packagist.org/packages/jdavidbakr/ReplaceableModel
+[link-packagist]: https://packagist.org/packages/jdavidbakr/replaceable-model
+[link-travis]: https://travis-ci.org/jdavidbakr/replaceable-model
+[link-scrutinizer]: https://scrutinizer-ci.com/g/jdavidbakr/replaceable-model/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/jdavidbakr/replaceable-model
+[link-downloads]: https://packagist.org/packages/jdavidbakr/replaceable-model
 [link-author]: https://github.com/jdavidbakr
 [link-contributors]: ../../contributors
