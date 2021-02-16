@@ -2,9 +2,9 @@
 
 namespace jdavidbakr\ReplaceableModel;
 
-use Illuminate\Support\ServiceProvider;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\ServiceProvider;
 
 trait ReplaceableModel
 {

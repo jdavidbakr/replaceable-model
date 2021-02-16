@@ -1,6 +1,10 @@
 <?php
 
-class ReplacableModelTest extends Orchestra\Testbench\TestCase
+use Illuminate\Database\Eloquent\Model;
+use jdavidbakr\ReplaceableModel\ReplaceableModel;
+use Orchestra\Testbench\TestCase;
+
+class ReplacableModelTest extends TestCase
 {
     public function setUp(): void
     {
@@ -142,8 +146,8 @@ class ReplacableModelTest extends Orchestra\Testbench\TestCase
     }
 }
 
-class TestModel extends Illuminate\Database\Eloquent\Model
+class TestModel extends Model
 {
-    use jdavidbakr\ReplaceableModel\ReplaceableModel;
+    use ReplaceableModel;
     protected $guarded = [];
 }
