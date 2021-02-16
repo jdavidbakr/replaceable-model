@@ -8,6 +8,7 @@ cache:
 php:
   - 7.2
   - 7.3
+  - 8.0
 
 env:
   - LARAVEL_VERSION=7.x-dev
